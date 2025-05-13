@@ -11,7 +11,7 @@ namespace Reconciliation.Infrastructure.Data
 {
     public static class SeedData
     {
-        public static async Task InitializeAsyn(
+        public static async Task InitializeAsync(
              ApplicationDbContext context,
            UserManager<ApplicationUser> userManager,
            RoleManager<ApplicationRole> roleManager
@@ -85,12 +85,12 @@ namespace Reconciliation.Infrastructure.Data
             foreach (var permissionName in adminPermissions)
             {
                 var permission = permissions.FirstOrDefault(p => p.Name == permissionName);
-                if (permission != null && !context.UserPermissions.Any(rp => rp.UserId == adminExistingUser.Id && rp.PermissionId == permission.Id))
+                if (permission != null && !context.UserPermissions.Any(rp => rp.UserId == adminExistingUser.Id && rp.PermissionName == permission.Name))
                 {
                     context.UserPermissions.Add(new UserPermission
                     {
                         UserId = adminExistingUser.Id,
-                        PermissionId = permission.Id
+                        PermissionName = permission.Name
                     });
                 }
             }
@@ -99,12 +99,12 @@ namespace Reconciliation.Infrastructure.Data
             foreach (var permissionName in adminPermissions)
             {
                 var permission = permissions.FirstOrDefault(p => p.Name == permissionName);
-                if (permission != null && !context.RolePermissions.Any(rp => rp.RoleId == adminRole.Id && rp.PermissionId == permission.Id))
+                if (permission != null && !context.RolePermissions.Any(rp => rp.RoleId == adminRole.Id && rp.PermissionName == permission.Name))
                 {
                     context.RolePermissions.Add(new RolePermission
                     {
                         RoleId = adminRole.Id,
-                        PermissionId = permission.Id
+                        PermissionName = permission.Name
                     });
                 }
             }
@@ -113,12 +113,12 @@ namespace Reconciliation.Infrastructure.Data
             foreach (var permissionName in managerPermissions)
             {
                 var permission = permissions.FirstOrDefault(p => p.Name == permissionName);
-                if (permission != null && !context.RolePermissions.Any(rp => rp.RoleId == managerRole.Id && rp.PermissionId == permission.Id))
+                if (permission != null && !context.RolePermissions.Any(rp => rp.RoleId == managerRole.Id && rp.PermissionName == permission.Name))
                 {
                     context.RolePermissions.Add(new RolePermission
                     {
                         RoleId = managerRole.Id,
-                        PermissionId = permission.Id
+                        PermissionName = permission.Name
                     });
                 }
             }
@@ -126,24 +126,24 @@ namespace Reconciliation.Infrastructure.Data
             foreach (var permissionName in userPermissions)
             {
                 var permission = permissions.FirstOrDefault(p => p.Name == permissionName);
-                if (permission != null && !context.RolePermissions.Any(rp => rp.RoleId == userRole.Id && rp.PermissionId == permission.Id))
+                if (permission != null && !context.RolePermissions.Any(rp => rp.RoleId == userRole.Id && rp.PermissionName == permissionName))
                 {
                     context.RolePermissions.Add(new RolePermission
                     {
                         RoleId = userRole.Id,
-                        PermissionId = permission.Id
+                        PermissionName = permission.Name
                     });
                 }
             }
             foreach (var permissionName in financePermissions)
             {
                 var permission = permissions.FirstOrDefault(p => p.Name == permissionName);
-                if (permission != null && !context.RolePermissions.Any(rp => rp.RoleId == financeRole.Id && rp.PermissionId == permission.Id))
+                if (permission != null && !context.RolePermissions.Any(rp => rp.RoleId == financeRole.Id && rp.PermissionName == permission.Name))
                 {
                     context.RolePermissions.Add(new RolePermission
                     {
                         RoleId = financeRole.Id,
-                        PermissionId = permission.Id
+                        PermissionName = permission.Name
                     });
                 }
             }

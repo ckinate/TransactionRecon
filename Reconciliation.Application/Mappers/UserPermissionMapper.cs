@@ -18,8 +18,7 @@ namespace Reconciliation.Application.Mappers
             var dto = new UserPermissionDto
             {
                 UserId = entity.UserId,
-                PermissionId = entity.PermissionId,
-                IsGranted = entity.IsGranted,
+          
                 User = null,
                 Permission = null
             };
@@ -29,7 +28,7 @@ namespace Reconciliation.Application.Mappers
             {
                 // When mapping parents, don't map their children (to avoid circular references)
                 dto.User = entity.User?.ToDto(MappingDepth.None);
-                dto.Permission = entity.Permission?.ToDto(MappingDepth.None);
+               // dto.Permission = entity.Permission?.ToDto(MappingDepth.None);
             }
 
             return dto;
@@ -42,10 +41,9 @@ namespace Reconciliation.Application.Mappers
             var entity = new UserPermission
             {
                 UserId = dto.UserId,
-                PermissionId = dto.PermissionId,
-                IsGranted = dto.IsGranted,
+              
                 User = null,
-                Permission = null
+               // Permission = null
             };
 
             // Only map parent objects if requested
@@ -53,7 +51,7 @@ namespace Reconciliation.Application.Mappers
             {
                 // When mapping parents, don't map their children (to avoid circular references)
                 entity.User = dto.User?.ToEntity(MappingDepth.None);
-                entity.Permission = dto.Permission?.ToEntity(MappingDepth.None);
+              //  entity.Permission = dto.Permission?.ToEntity(MappingDepth.None);
             }
 
             return entity;
@@ -75,8 +73,8 @@ namespace Reconciliation.Application.Mappers
                 return;
 
             entity.UserId = dto.UserId;
-            entity.PermissionId = dto.PermissionId;
-            entity.IsGranted = dto.IsGranted;
+          //  entity.PermissionId = dto.PermissionId;
+         //   entity.IsGranted = dto.IsGranted;
             // Note: For navigation properties, you typically don't update them directly
         }
     }

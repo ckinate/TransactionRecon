@@ -3429,23 +3429,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\manufacture\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\christian.kinate\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\manufacture\\Documents\\Courses\\Application\\TransactionReconciliation\\ReconciliationApi\\Reconciliation.Infrastructure\\Reconciliation.Infrastructure.csproj",
+      "projectUniqueName": "C:\\AllFiles\\Christian\\Christian\\TransactionRecon\\Reconciliation.Infrastructure\\Reconciliation.Infrastructure.csproj",
       "projectName": "Reconciliation.Infrastructure",
-      "projectPath": "C:\\Users\\manufacture\\Documents\\Courses\\Application\\TransactionReconciliation\\ReconciliationApi\\Reconciliation.Infrastructure\\Reconciliation.Infrastructure.csproj",
-      "packagesPath": "C:\\Users\\manufacture\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\manufacture\\Documents\\Courses\\Application\\TransactionReconciliation\\ReconciliationApi\\Reconciliation.Infrastructure\\obj\\",
+      "projectPath": "C:\\AllFiles\\Christian\\Christian\\TransactionRecon\\Reconciliation.Infrastructure\\Reconciliation.Infrastructure.csproj",
+      "packagesPath": "C:\\Users\\christian.kinate\\.nuget\\packages\\",
+      "outputPath": "C:\\AllFiles\\Christian\\Christian\\TransactionRecon\\Reconciliation.Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\manufacture\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\christian.kinate\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -3453,6 +3455,7 @@
         "net8.0"
       ],
       "sources": {
+        "C:\\AllFiles\\Microservices\\SQLVersion\\packages": {},
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
@@ -3460,11 +3463,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\manufacture\\Documents\\Courses\\Application\\TransactionReconciliation\\ReconciliationApi\\Reconciliation.Application\\Reconciliation.Application.csproj": {
-              "projectPath": "C:\\Users\\manufacture\\Documents\\Courses\\Application\\TransactionReconciliation\\ReconciliationApi\\Reconciliation.Application\\Reconciliation.Application.csproj"
+            "C:\\AllFiles\\Christian\\Christian\\TransactionRecon\\Reconciliation.Application\\Reconciliation.Application.csproj": {
+              "projectPath": "C:\\AllFiles\\Christian\\Christian\\TransactionRecon\\Reconciliation.Application\\Reconciliation.Application.csproj"
             },
-            "C:\\Users\\manufacture\\Documents\\Courses\\Application\\TransactionReconciliation\\ReconciliationApi\\Reconciliation.Domain\\Reconciliation.Domain.csproj": {
-              "projectPath": "C:\\Users\\manufacture\\Documents\\Courses\\Application\\TransactionReconciliation\\ReconciliationApi\\Reconciliation.Domain\\Reconciliation.Domain.csproj"
+            "C:\\AllFiles\\Christian\\Christian\\TransactionRecon\\Reconciliation.Domain\\Reconciliation.Domain.csproj": {
+              "projectPath": "C:\\AllFiles\\Christian\\Christian\\TransactionRecon\\Reconciliation.Domain\\Reconciliation.Domain.csproj"
             }
           }
         }
@@ -3479,7 +3482,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.100"
+      "SdkAnalysisLevel": "9.0.200"
     },
     "frameworks": {
       "net8.0": {
@@ -3542,7 +3545,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

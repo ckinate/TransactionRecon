@@ -8,12 +8,6 @@ namespace Reconciliation.Application.DTOs
 {
     public class PermissionDto
     {
-        public int Id { get; set; }
-        public required string Name { get; set; }
-        public required string Description { get; set; }
-
-        // Navigation properties
-        public virtual ICollection<RolePermissionDto> RolePermissions { get; set; }
-        public virtual ICollection<UserPermissionDto> UserPermissions { get; set; }
+        public string Permission { get; set; }
     }
 }

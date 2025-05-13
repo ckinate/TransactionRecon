@@ -18,7 +18,7 @@ namespace Reconciliation.Application.Mappers
             var dto = new RolePermissionDto
             {
                 RoleId = entity.RoleId,
-                PermissionId = entity.PermissionId,
+             //   PermissionId = entity.PermissionId,
                 Role = null,
                 Permission = null
             };
@@ -28,7 +28,7 @@ namespace Reconciliation.Application.Mappers
             {
                 // When mapping parents, don't map their children (to avoid circular references)
                 dto.Role = entity.Role?.ToDto(MappingDepth.None);
-                dto.Permission = entity.Permission?.ToDto(MappingDepth.None);
+               // dto.Permission = entity.PermissionName?.ToDto(MappingDepth.None);
             }
 
             return dto;
@@ -41,9 +41,9 @@ namespace Reconciliation.Application.Mappers
             var entity = new RolePermission
             {
                 RoleId = dto.RoleId,
-                PermissionId = dto.PermissionId,
+              //  PermissionId = dto.PermissionId,
                 Role = null,
-                Permission = null
+              //  Permission = null
             };
 
             // Only map parent objects if requested
@@ -51,7 +51,7 @@ namespace Reconciliation.Application.Mappers
             {
                 // When mapping parents, don't map their children (to avoid circular references)
                 entity.Role = dto.Role?.ToEntity(MappingDepth.None);
-                entity.Permission = dto.Permission?.ToEntity(MappingDepth.None);
+              //  entity.Permission = dto.Permission?.ToEntity(MappingDepth.None);
             }
 
             return entity;
@@ -73,7 +73,7 @@ namespace Reconciliation.Application.Mappers
                 return;
 
             entity.RoleId = dto.RoleId;
-            entity.PermissionId = dto.PermissionId;
+          //  entity.PermissionId = dto.PermissionId;
             // Note: For navigation properties, you typically don't update them directly
         }
     }

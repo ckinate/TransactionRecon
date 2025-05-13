@@ -11,3 +11,16 @@ C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\Rec
 C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\ReconciliationApi\Reconciliation.Domain\obj\Debug\net8.0\refint\Reconciliation.Domain.dll
 C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\ReconciliationApi\Reconciliation.Domain\obj\Debug\net8.0\Reconciliation.Domain.pdb
 C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\ReconciliationApi\Reconciliation.Domain\obj\Debug\net8.0\ref\Reconciliation.Domain.dll
+C:\AllFiles\Christian\Christian\TransactionRecon\Reconciliation.Domain\bin\Debug\net8.0\Reconciliation.Domain.deps.json
+C:\AllFiles\Christian\Christian\TransactionRecon\Reconciliation.Domain\bin\Debug\net8.0\Reconciliation.Domain.dll
+C:\AllFiles\Christian\Christian\TransactionRecon\Reconciliation.Domain\bin\Debug\net8.0\Reconciliation.Domain.pdb
+C:\AllFiles\Christian\Christian\TransactionRecon\Reconciliation.Domain\obj\Debug\net8.0\Reconciliation.Domain.csproj.AssemblyReference.cache
+C:\AllFiles\Christian\Christian\TransactionRecon\Reconciliation.Domain\obj\Debug\net8.0\Reconciliation.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\AllFiles\Christian\Christian\TransactionRecon\Reconciliation.Domain\obj\Debug\net8.0\Reconciliation.Domain.AssemblyInfoInputs.cache
+C:\AllFiles\Christian\Christian\TransactionRecon\Reconciliation.Domain\obj\Debug\net8.0\Reconciliation.Domain.AssemblyInfo.cs
+C:\AllFiles\Christian\Christian\TransactionRecon\Reconciliation.Domain\obj\Debug\net8.0\Reconciliation.Domain.csproj.CoreCompileInputs.cache
+C:\AllFiles\Christian\Christian\TransactionRecon\Reconciliation.Domain\obj\Debug\net8.0\Reconciliation.Domain.sourcelink.json
+C:\AllFiles\Christian\Christian\TransactionRecon\Reconciliation.Domain\obj\Debug\net8.0\Reconciliation.Domain.dll
+C:\AllFiles\Christian\Christian\TransactionRecon\Reconciliation.Domain\obj\Debug\net8.0\refint\Reconciliation.Domain.dll
+C:\AllFiles\Christian\Christian\TransactionRecon\Reconciliation.Domain\obj\Debug\net8.0\Reconciliation.Domain.pdb
+C:\AllFiles\Christian\Christian\TransactionRecon\Reconciliation.Domain\obj\Debug\net8.0\ref\Reconciliation.Domain.dll

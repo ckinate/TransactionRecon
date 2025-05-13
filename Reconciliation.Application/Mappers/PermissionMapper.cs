@@ -17,11 +17,12 @@ namespace Reconciliation.Application.Mappers
 
             var dto = new PermissionDto
             {
-                Id = entity.Id,
-                Name = entity.Name,
-                Description = entity.Description,
-                RolePermissions = new List<RolePermissionDto>(),
-                UserPermissions = new List<UserPermissionDto>()
+                //Id = entity.Id,
+                //Name = entity.Name,
+                //Description = entity.Description,
+                //RolePermissions = new List<RolePermissionDto>(),
+                //UserPermissions = new List<UserPermissionDto>()
+                
             };
 
             // Only map child collections if requested
@@ -30,29 +31,29 @@ namespace Reconciliation.Application.Mappers
                 if (entity.RolePermissions != null)
                 {
                     // When mapping children, don't map their parents (to avoid circular references)
-                    dto.RolePermissions = entity.RolePermissions
-                        .Select(rp => rp.ToDto(MappingDepth.None))
-                        .ToList();
+                    //dto.RolePermissions = entity.RolePermissions
+                    //    .Select(rp => rp.ToDto(MappingDepth.None))
+                    //    .ToList();
 
                     // Manually set the Permission reference to avoid circular reference
-                    foreach (var rolePermission in dto.RolePermissions)
-                    {
-                        rolePermission.Permission = dto;
-                    }
+                    //foreach (var rolePermission in dto.RolePermissions)
+                    //{
+                    //    rolePermission.Permission = dto;
+                    //}
                 }
 
                 if (entity.UserPermissions != null)
                 {
                     // When mapping children, don't map their parents (to avoid circular references)
-                    dto.UserPermissions = entity.UserPermissions
-                        .Select(up => up.ToDto(MappingDepth.None))
-                        .ToList();
+                    //dto.UserPermissions = entity.UserPermissions
+                    //    .Select(up => up.ToDto(MappingDepth.None))
+                    //    .ToList();
 
                     // Manually set the Permission reference to avoid circular reference
-                    foreach (var userPermission in dto.UserPermissions)
-                    {
-                        userPermission.Permission = dto;
-                    }
+                    //foreach (var userPermission in dto.UserPermissions)
+                    //{
+                    //    userPermission.Permission = dto;
+                    //}
                 }
             }
 
@@ -66,9 +67,9 @@ namespace Reconciliation.Application.Mappers
 
             var entity = new Permission
             {
-                Id = dto.Id,
-                Name = dto.Name,
-                Description = dto.Description,
+              //  Id = dto.Id,
+                Name = dto.Permission,
+             //   Description = dto.Description,
                 RolePermissions = new List<RolePermission>(),
                 UserPermissions = new List<UserPermission>()
             };
@@ -76,33 +77,33 @@ namespace Reconciliation.Application.Mappers
             // Only map child collections if requested
             if (depth.HasFlag(MappingDepth.IncludeChildren))
             {
-                if (dto.RolePermissions != null)
-                {
-                    // When mapping children, don't map their parents (to avoid circular references)
-                    entity.RolePermissions = dto.RolePermissions
-                        .Select(rp => rp.ToEntity(MappingDepth.None))
-                        .ToList();
+                //if (dto.RolePermissions != null)
+                //{
+                //    // When mapping children, don't map their parents (to avoid circular references)
+                //    entity.RolePermissions = dto.RolePermissions
+                //        .Select(rp => rp.ToEntity(MappingDepth.None))
+                //        .ToList();
 
-                    // Manually set the Permission reference to avoid circular reference
-                    foreach (var rolePermission in entity.RolePermissions)
-                    {
-                        rolePermission.Permission = entity;
-                    }
-                }
+                //    // Manually set the Permission reference to avoid circular reference
+                //    foreach (var rolePermission in entity.RolePermissions)
+                //    {
+                //        rolePermission.Permission = entity;
+                //    }
+                //}
 
-                if (dto.UserPermissions != null)
-                {
-                    // When mapping children, don't map their parents (to avoid circular references)
-                    entity.UserPermissions = dto.UserPermissions
-                        .Select(up => up.ToEntity(MappingDepth.None))
-                        .ToList();
+                //if (dto.UserPermissions != null)
+                //{
+                //    // When mapping children, don't map their parents (to avoid circular references)
+                //    entity.UserPermissions = dto.UserPermissions
+                //        .Select(up => up.ToEntity(MappingDepth.None))
+                //        .ToList();
 
-                    // Manually set the Permission reference to avoid circular reference
-                    foreach (var userPermission in entity.UserPermissions)
-                    {
-                        userPermission.Permission = entity;
-                    }
-                }
+                //    // Manually set the Permission reference to avoid circular reference
+                //    foreach (var userPermission in entity.UserPermissions)
+                //    {
+                //        userPermission.Permission = entity;
+                //    }
+                //}
             }
 
             return entity;
@@ -122,8 +123,8 @@ namespace Reconciliation.Application.Mappers
             if (entity == null || dto == null)
                 return;
 
-            entity.Name = dto.Name;
-            entity.Description = dto.Description;
+            //entity.Name = dto.Name;
+            //entity.Description = dto.Description;
             // Note: Collections usually require more complex handling in updates
         }
     }
