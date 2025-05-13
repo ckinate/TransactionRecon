@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Reconciliation.Domain.Exceptions
+namespace Reconciliation.Domain.Common
 {
     public class BadRequestException : Exception
     {
-        public BadRequestException(string message) : base(message) { }
+        public BadRequestException(string message) : base(message)
+        {
+        }
     }
 }

@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Reconciliation.Application.Authorization
+namespace Reconciliation.Infrastructure.Authorization
 {
     public class PermissionRequirement : IAuthorizationRequirement
     {
-        public string Permission { get; }
+        public string Permission { get; private set; }
 
         public PermissionRequirement(string permission)
         {

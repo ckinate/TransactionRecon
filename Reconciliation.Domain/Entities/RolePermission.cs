@@ -8,11 +8,12 @@ namespace Reconciliation.Domain.Entities
 {
     public class RolePermission
     {
+        public int Id { get; set; }
         public required string RoleId { get; set; }
-        public int PermissionId { get; set; }
+        public string PermissionName { get; set; }
 
         // Navigation properties
-        public virtual required ApplicationRole Role { get; set; }
-        public virtual required Permission Permission { get; set; }
+        public virtual  ApplicationRole Role { get; set; }
+       
     }
 }

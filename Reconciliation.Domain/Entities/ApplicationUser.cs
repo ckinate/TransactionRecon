@@ -11,7 +11,9 @@ namespace Reconciliation.Domain.Entities
     {
         public required string FirstName { get; set; }
         public required string LastName { get; set; }
-
+        public DateTime CreatedAt { get; set; }
+        public DateTime? LastLoginAt { get; set; }
+        public bool IsActive { get; set; } = true;
         // Navigation property
         public virtual ICollection<UserPermission>? UserPermissions { get; set; }
         public virtual ICollection<RefreshToken> RefreshTokens { get; set; }

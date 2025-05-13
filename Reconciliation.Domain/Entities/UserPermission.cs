@@ -8,12 +8,14 @@ namespace Reconciliation.Domain.Entities
 {
     public class UserPermission
     {
+        public int Id { get; set; }
         public required string UserId { get; set; }
-        public int PermissionId { get; set; }
-        public bool IsGranted { get; set; } // True = granted, False = denied (overrides role permissions)
+    
+        public string PermissionName { get; set; }
+      
 
         // Navigation properties
-        public virtual required ApplicationUser User { get; set; }
-        public virtual required Permission Permission { get; set; }
+        public virtual ApplicationUser User { get; set; }
+
     }
 }

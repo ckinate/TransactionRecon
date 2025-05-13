@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Reconciliation.Presentation")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7855866b959c84ee1da0ad3a39fa2f1719ddce49")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+726c8e17e352602bc9badb743960ccef144573c7")]
 [assembly: System.Reflection.AssemblyProductAttribute("Reconciliation.Presentation")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Reconciliation.Presentation")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

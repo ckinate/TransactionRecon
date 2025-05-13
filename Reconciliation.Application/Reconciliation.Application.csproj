@@ -14,4 +14,8 @@
     <ProjectReference Include="..\Reconciliation.Domain\Reconciliation.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Authorization\" />
+  </ItemGroup>
+
 </Project>

@@ -1,0 +1,13 @@
+C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\ReconciliationApi\Reconciliation.Domain\bin\Debug\net8.0\Reconciliation.Domain.deps.json
+C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\ReconciliationApi\Reconciliation.Domain\bin\Debug\net8.0\Reconciliation.Domain.dll
+C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\ReconciliationApi\Reconciliation.Domain\bin\Debug\net8.0\Reconciliation.Domain.pdb
+C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\ReconciliationApi\Reconciliation.Domain\obj\Debug\net8.0\Reconciliation.Domain.csproj.AssemblyReference.cache
+C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\ReconciliationApi\Reconciliation.Domain\obj\Debug\net8.0\Reconciliation.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\ReconciliationApi\Reconciliation.Domain\obj\Debug\net8.0\Reconciliation.Domain.AssemblyInfoInputs.cache
+C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\ReconciliationApi\Reconciliation.Domain\obj\Debug\net8.0\Reconciliation.Domain.AssemblyInfo.cs
+C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\ReconciliationApi\Reconciliation.Domain\obj\Debug\net8.0\Reconciliation.Domain.csproj.CoreCompileInputs.cache
+C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\ReconciliationApi\Reconciliation.Domain\obj\Debug\net8.0\Reconciliation.Domain.sourcelink.json
+C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\ReconciliationApi\Reconciliation.Domain\obj\Debug\net8.0\Reconciliation.Domain.dll
+C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\ReconciliationApi\Reconciliation.Domain\obj\Debug\net8.0\refint\Reconciliation.Domain.dll
+C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\ReconciliationApi\Reconciliation.Domain\obj\Debug\net8.0\Reconciliation.Domain.pdb
+C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\ReconciliationApi\Reconciliation.Domain\obj\Debug\net8.0\ref\Reconciliation.Domain.dll

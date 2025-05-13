@@ -1,4 +1,5 @@
 ﻿using Reconciliation.Application.DTOs;
+using Reconciliation.Domain.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,13 +10,13 @@ namespace Reconciliation.Application.Interfaces.Services
 {
     public interface IPermissionService
     {
-        Task<IEnumerable<PermissionDto>> GetAllPermissionsAsync();
-        Task<bool> HasPermissionAsync(string userId, string permissionName);
-        Task<IEnumerable<string>> GetUserPermissionsAsync(string userId);
+        Task<List<string>> GetAllDefinedPermissionsAsync();
+        Task<List<string>> GetUserPermissionsAsync(string userId);
+        Task<ResultValue< bool>> AddPermissionToUserAsync(string userId, string permission);
+        Task<ResultValue<bool>> RemovePermissionFromUserAsync(string userId, string permission);
+        Task<ResultValue<bool>> AddPermissionToRoleAsync(string roleId, string permission);
+        Task<ResultValue<bool>> RemovePermissionFromRoleAsync(string roleId, string permission);
         Task<IEnumerable<string>> GetRolePermissionsAsync(string roleId);
-        Task<bool> GrantPermissionToUserAsync(string userId, string permissionName);
-        Task<bool> RevokePermissionFromUserAsync(string userId, string permissionName);
-        Task<bool> GrantPermissionToRoleAsync(string roleId, string permissionName);
-        Task<bool> RevokePermissionFromRoleAsync(string roleId, string permissionName);
+        Task<bool> HasPermissionAsync(string userId, string permissionName);
     }
 }

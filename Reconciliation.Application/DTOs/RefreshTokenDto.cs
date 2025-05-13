@@ -19,8 +19,9 @@ namespace Reconciliation.Application.DTOs
         public bool IsRevoked { get; set; }
 
         public string UserId { get; set; }
+        public string RefreshToken { get; set; }
 
-       
+
         public ApplicationUserDto User { get; set; }
     }
 }

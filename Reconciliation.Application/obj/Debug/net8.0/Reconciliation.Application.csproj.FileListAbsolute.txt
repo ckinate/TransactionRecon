@@ -1,0 +1,16 @@
+C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\ReconciliationApi\Reconciliation.Application\bin\Debug\net8.0\Reconciliation.Application.deps.json
+C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\ReconciliationApi\Reconciliation.Application\bin\Debug\net8.0\Reconciliation.Application.dll
+C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\ReconciliationApi\Reconciliation.Application\bin\Debug\net8.0\Reconciliation.Application.pdb
+C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\ReconciliationApi\Reconciliation.Application\bin\Debug\net8.0\Reconciliation.Domain.dll
+C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\ReconciliationApi\Reconciliation.Application\bin\Debug\net8.0\Reconciliation.Domain.pdb
+C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\ReconciliationApi\Reconciliation.Application\obj\Debug\net8.0\Reconciliation.Application.csproj.AssemblyReference.cache
+C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\ReconciliationApi\Reconciliation.Application\obj\Debug\net8.0\Reconciliation.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\ReconciliationApi\Reconciliation.Application\obj\Debug\net8.0\Reconciliation.Application.AssemblyInfoInputs.cache
+C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\ReconciliationApi\Reconciliation.Application\obj\Debug\net8.0\Reconciliation.Application.AssemblyInfo.cs
+C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\ReconciliationApi\Reconciliation.Application\obj\Debug\net8.0\Reconciliation.Application.csproj.CoreCompileInputs.cache
+C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\ReconciliationApi\Reconciliation.Application\obj\Debug\net8.0\Reconciliation.Application.sourcelink.json
+C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\ReconciliationApi\Reconciliation.Application\obj\Debug\net8.0\Reconcil.7D63F27B.Up2Date
+C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\ReconciliationApi\Reconciliation.Application\obj\Debug\net8.0\Reconciliation.Application.dll
+C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\ReconciliationApi\Reconciliation.Application\obj\Debug\net8.0\refint\Reconciliation.Application.dll
+C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\ReconciliationApi\Reconciliation.Application\obj\Debug\net8.0\Reconciliation.Application.pdb
+C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\ReconciliationApi\Reconciliation.Application\obj\Debug\net8.0\ref\Reconciliation.Application.dll

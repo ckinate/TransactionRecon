@@ -1,0 +1,8 @@
+C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\ReconciliationApi\Reconciliation.Presentation\obj\Debug\net8.0\Reconciliation.Presentation.csproj.AssemblyReference.cache
+C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\ReconciliationApi\Reconciliation.Presentation\obj\Debug\net8.0\Reconciliation.Presentation.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\ReconciliationApi\Reconciliation.Presentation\obj\Debug\net8.0\Reconciliation.Presentation.AssemblyInfoInputs.cache
+C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\ReconciliationApi\Reconciliation.Presentation\obj\Debug\net8.0\Reconciliation.Presentation.AssemblyInfo.cs
+C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\ReconciliationApi\Reconciliation.Presentation\obj\Debug\net8.0\Reconciliation.Presentation.csproj.CoreCompileInputs.cache
+C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\ReconciliationApi\Reconciliation.Presentation\obj\Debug\net8.0\Reconciliation.Presentation.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\ReconciliationApi\Reconciliation.Presentation\obj\Debug\net8.0\Reconciliation.Presentation.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\ReconciliationApi\Reconciliation.Presentation\obj\Debug\net8.0\Reconciliation.Presentation.sourcelink.json

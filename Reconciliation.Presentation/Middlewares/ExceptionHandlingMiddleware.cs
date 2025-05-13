@@ -1,4 +1,6 @@
-﻿using Reconciliation.Domain.Exceptions;
+﻿
+
+using Reconciliation.Domain.Common;
 
 namespace Reconciliation.Presentation.Middlewares
 {
