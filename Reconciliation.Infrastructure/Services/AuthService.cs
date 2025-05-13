@@ -21,17 +21,20 @@ namespace Reconciliation.Infrastructure.Services
         private readonly IGenericRepository<UserPermission> _userPermissionRepository;
         private readonly IGenericRepository<RefreshToken> _refreshTokenRepository;
         private readonly IConfiguration _configuration;
+        private readonly IGenericRepository<RolePermission> _rolePermissionRepository;
         public AuthService(
     UserManager<ApplicationUser> userManager,
     RoleManager<ApplicationRole> roleManager,
     IGenericRepository<UserPermission> userPermissionRepository,
-    IGenericRepository<RefreshToken> refreshTokenRepository, IConfiguration configuration)
+    IGenericRepository<RefreshToken> refreshTokenRepository, IConfiguration configuration,
+    IGenericRepository<RolePermission> rolePermissionRepository)
         {
             _userManager = userManager;
             _roleManager = roleManager;
             _userPermissionRepository = userPermissionRepository;
             _refreshTokenRepository = refreshTokenRepository;
             _configuration = configuration;
+            _rolePermissionRepository = rolePermissionRepository;
         }
 
         public async Task<AuthResult> LoginAsync(LoginDto model)
@@ -62,6 +65,33 @@ namespace Reconciliation.Infrastructure.Services
             // Get user permissions (both direct and from roles)
             var permissions = await GetUserPermissionsAsync(user.Id);
 
+        }
+
+
+
+
+
+
+        private async Task<List<string>> GetUserPermissionsAsync(string userId)
+        {
+            // Get direct user permissions
+            var userPermissions = await _userPermissionRepository.GetAll(false)
+                .Where(up => up.UserId == userId)
+                .Select(up => up.PermissionName)
+                .ToListAsync();
+
+            // Get user roles
+            var user = await _userManager.FindByIdAsync(userId);
+            var roles = await _userManager.GetRolesAsync(user);
+
+            // Get permissions from roles
+            var rolePermissions = await _rolePermissionRepository.GetAll(false)
+                .Where(rp => roles.Contains(rp.Role.Name))
+                .Select(rp => rp.PermissionName)
+                .ToListAsync();
+
+            // Combine and remove duplicates
+            return userPermissions.Union(rolePermissions).Distinct().ToList();
         }
     }
 
