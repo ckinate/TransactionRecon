@@ -14,17 +14,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/RegisterDto"
+                "$ref": "#/components/schemas/Reconciliation.Application.DTOs.RegisterDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/RegisterDto"
+                "$ref": "#/components/schemas/Reconciliation.Application.DTOs.RegisterDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/RegisterDto"
+                "$ref": "#/components/schemas/Reconciliation.Application.DTOs.RegisterDto"
               }
             }
           }
@@ -45,17 +45,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/LoginDto"
+                "$ref": "#/components/schemas/Reconciliation.Application.DTOs.LoginDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/LoginDto"
+                "$ref": "#/components/schemas/Reconciliation.Application.DTOs.LoginDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/LoginDto"
+                "$ref": "#/components/schemas/Reconciliation.Application.DTOs.LoginDto"
               }
             }
           }
@@ -76,17 +76,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/RefreshTokenDto"
+                "$ref": "#/components/schemas/Reconciliation.Application.DTOs.RefreshTokenDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/RefreshTokenDto"
+                "$ref": "#/components/schemas/Reconciliation.Application.DTOs.RefreshTokenDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/RefreshTokenDto"
+                "$ref": "#/components/schemas/Reconciliation.Application.DTOs.RefreshTokenDto"
               }
             }
           }
@@ -107,17 +107,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/RefreshTokenDto"
+                "$ref": "#/components/schemas/Reconciliation.Application.DTOs.RefreshTokenDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/RefreshTokenDto"
+                "$ref": "#/components/schemas/Reconciliation.Application.DTOs.RefreshTokenDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/RefreshTokenDto"
+                "$ref": "#/components/schemas/Reconciliation.Application.DTOs.RefreshTokenDto"
               }
             }
           }
@@ -148,17 +148,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/RoleDto"
+                "$ref": "#/components/schemas/Reconciliation.Application.DTOs.RoleDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/RoleDto"
+                "$ref": "#/components/schemas/Reconciliation.Application.DTOs.RoleDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/RoleDto"
+                "$ref": "#/components/schemas/Reconciliation.Application.DTOs.RoleDto"
               }
             }
           }
@@ -209,17 +209,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/RoleDto"
+                "$ref": "#/components/schemas/Reconciliation.Application.DTOs.RoleDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/RoleDto"
+                "$ref": "#/components/schemas/Reconciliation.Application.DTOs.RoleDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/RoleDto"
+                "$ref": "#/components/schemas/Reconciliation.Application.DTOs.RoleDto"
               }
             }
           }
@@ -270,17 +270,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/PermissionDto"
+                "$ref": "#/components/schemas/Reconciliation.Application.DTOs.PermissionDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/PermissionDto"
+                "$ref": "#/components/schemas/Reconciliation.Application.DTOs.PermissionDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/PermissionDto"
+                "$ref": "#/components/schemas/Reconciliation.Application.DTOs.PermissionDto"
               }
             }
           }
@@ -341,17 +341,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UserRoleDto"
+                "$ref": "#/components/schemas/Reconciliation.Application.DTOs.UserRoleDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/UserRoleDto"
+                "$ref": "#/components/schemas/Reconciliation.Application.DTOs.UserRoleDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/UserRoleDto"
+                "$ref": "#/components/schemas/Reconciliation.Application.DTOs.UserRoleDto"
               }
             }
           }
@@ -444,17 +444,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/RegisterDto"
+                "$ref": "#/components/schemas/Reconciliation.Application.DTOs.RegisterDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/RegisterDto"
+                "$ref": "#/components/schemas/Reconciliation.Application.DTOs.RegisterDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/RegisterDto"
+                "$ref": "#/components/schemas/Reconciliation.Application.DTOs.RegisterDto"
               }
             }
           }
@@ -505,17 +505,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UserUpdateDto"
+                "$ref": "#/components/schemas/Reconciliation.Application.DTOs.UserUpdateDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/UserUpdateDto"
+                "$ref": "#/components/schemas/Reconciliation.Application.DTOs.UserUpdateDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/UserUpdateDto"
+                "$ref": "#/components/schemas/Reconciliation.Application.DTOs.UserUpdateDto"
               }
             }
           }
@@ -578,17 +578,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/PermissionDto"
+                "$ref": "#/components/schemas/Reconciliation.Application.DTOs.PermissionDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/PermissionDto"
+                "$ref": "#/components/schemas/Reconciliation.Application.DTOs.PermissionDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/PermissionDto"
+                "$ref": "#/components/schemas/Reconciliation.Application.DTOs.PermissionDto"
               }
             }
           }
@@ -633,7 +633,7 @@
   },
   "components": {
     "schemas": {
-      "ApplicationUserDto": {
+      "Reconciliation.Application.DTOs.ApplicationUserDto": {
         "required": [
           "firstName",
           "lastName"
@@ -659,21 +659,21 @@
           "userPermissions": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/UserPermissionDto"
+              "$ref": "#/components/schemas/Reconciliation.Application.DTOs.UserPermissionDto"
             },
             "nullable": true
           },
           "refreshTokens": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/RefreshTokenDto"
+              "$ref": "#/components/schemas/Reconciliation.Application.DTOs.RefreshTokenDto"
             },
             "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "LoginDto": {
+      "Reconciliation.Application.DTOs.LoginDto": {
         "type": "object",
         "properties": {
           "email": {
@@ -690,7 +690,7 @@
         },
         "additionalProperties": false
       },
-      "PermissionDto": {
+      "Reconciliation.Application.DTOs.PermissionDto": {
         "type": "object",
         "properties": {
           "permission": {
@@ -700,7 +700,7 @@
         },
         "additionalProperties": false
       },
-      "RefreshTokenDto": {
+      "Reconciliation.Application.DTOs.RefreshTokenDto": {
         "type": "object",
         "properties": {
           "id": {
@@ -727,12 +727,12 @@
             "nullable": true
           },
           "user": {
-            "$ref": "#/components/schemas/ApplicationUserDto"
+            "$ref": "#/components/schemas/Reconciliation.Application.DTOs.ApplicationUserDto"
           }
         },
         "additionalProperties": false
       },
-      "RegisterDto": {
+      "Reconciliation.Application.DTOs.RegisterDto": {
         "type": "object",
         "properties": {
           "firstName": {
@@ -762,7 +762,7 @@
         },
         "additionalProperties": false
       },
-      "RoleDto": {
+      "Reconciliation.Application.DTOs.RoleDto": {
         "type": "object",
         "properties": {
           "name": {
@@ -776,7 +776,7 @@
         },
         "additionalProperties": false
       },
-      "UserPermissionDto": {
+      "Reconciliation.Application.DTOs.UserPermissionDto": {
         "required": [
           "permission",
           "user",
@@ -796,15 +796,15 @@
             "type": "boolean"
           },
           "user": {
-            "$ref": "#/components/schemas/ApplicationUserDto"
+            "$ref": "#/components/schemas/Reconciliation.Application.DTOs.ApplicationUserDto"
           },
           "permission": {
-            "$ref": "#/components/schemas/PermissionDto"
+            "$ref": "#/components/schemas/Reconciliation.Application.DTOs.PermissionDto"
           }
         },
         "additionalProperties": false
       },
-      "UserRoleDto": {
+      "Reconciliation.Application.DTOs.UserRoleDto": {
         "type": "object",
         "properties": {
           "userId": {
@@ -814,7 +814,7 @@
         },
         "additionalProperties": false
       },
-      "UserUpdateDto": {
+      "Reconciliation.Application.DTOs.UserUpdateDto": {
         "type": "object",
         "properties": {
           "firstName": {
@@ -831,6 +831,19 @@
         },
         "additionalProperties": false
       }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "http",
+        "description": "Enter your JWT token in this field",
+        "scheme": "Bearer",
+        "bearerFormat": "JWT"
+      }
     }
-  }
+  },
+  "security": [
+    {
+      "Bearer": [ ]
+    }
+  ]
 }

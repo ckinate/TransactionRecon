@@ -9,7 +9,7 @@ namespace Reconciliation.Infrastructure.Authorization
 {
     public class PermissionAttribute : AuthorizeAttribute
     {
-        public PermissionAttribute(string permission) : base("Permission" + permission)
+        public PermissionAttribute(string permission) : base(permission)
         {
         }
     }

@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Reconciliation.Domain.Entities;
 using Reconciliation.Infrastructure.Data;
 using Reconciliation.Infrastructure.Extensions;
+using Reconciliation.Presentation.Extensions;
 using Reconciliation.Presentation.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 // Configure Serilog using the Infrastructure layer's extension
 builder.Host.UseCustomSerilog();
+builder.Services.AddSwaggerGenWithAuth();
 
 builder.Services.AddControllers();
 builder.Services.AddInfrastructure(builder.Configuration);

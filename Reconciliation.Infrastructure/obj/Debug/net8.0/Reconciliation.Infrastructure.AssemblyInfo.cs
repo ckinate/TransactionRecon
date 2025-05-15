@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Reconciliation.Infrastructure")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ab6448bb0c2adc4c46bd7bcd846c9ec584452626")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+08af6b968cbccbd07e6fec62f567ee8fd168e7aa")]
 [assembly: System.Reflection.AssemblyProductAttribute("Reconciliation.Infrastructure")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Reconciliation.Infrastructure")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
