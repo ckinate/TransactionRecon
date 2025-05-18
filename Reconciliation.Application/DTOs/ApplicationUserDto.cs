@@ -12,6 +12,10 @@ namespace Reconciliation.Application.DTOs
         public string? UserName { get; set; }
         public required string FirstName { get; set; }
         public required string LastName { get; set; }
+        public string? Email { get; set; }
+        public bool IsActive { get; set; }
+
+        public DateTime? LastLoginAt { get; set; }
         public virtual ICollection<UserPermissionDto>? UserPermissions { get; set; }
         public virtual ICollection<RefreshTokenDto>? RefreshTokens { get; set; }
     }

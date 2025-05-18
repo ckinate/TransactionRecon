@@ -44,6 +44,7 @@ namespace Reconciliation.Infrastructure.Services
 
         public async Task<AuthResult> LoginAsync(LoginDto model)
         {
+
             var user = await _userManager.FindByEmailAsync(model.Email);
             if (user == null || !await _userManager.CheckPasswordAsync(user, model.Password))
             {
@@ -53,6 +54,7 @@ namespace Reconciliation.Infrastructure.Services
                     Message = "Invalid credentials"
                 };
             }
+
             if (!user.IsActive)
             {
                 return new AuthResult
@@ -64,24 +66,63 @@ namespace Reconciliation.Infrastructure.Services
             // Update last login timestamp
             user.LastLoginAt = DateTime.UtcNow;
             await _userManager.UpdateAsync(user);
+
             // Get user roles
             var userRoles = await _userManager.GetRolesAsync(user);
 
             // Get user permissions (both direct and from roles)
             var permissions = await GetUserPermissionsAsync(user.Id);
-            // Generate tokens
-            var (token, expiration) = GenerateJwtToken(user, userRoles, permissions);
-            var refreshToken = GenerateRefreshToken();
-            // Save refresh token to database
-            user.RefreshTokens ??= new List<RefreshToken>();
-            user.RefreshTokens.Add(new RefreshToken
-            {
-                Token = refreshToken,
-                ExpiryDate = DateTime.UtcNow.AddDays(7),
-                UserId = user.Id
-            });
 
-            await _refreshTokenRepository.SaveChangesAsync();
+            // Generate JWT token
+            var (token, expiration) = GenerateJwtToken(user, userRoles, permissions);
+            // Refresh token management
+            string refreshToken;
+
+            // Initialize RefreshTokens collection if null
+            user.RefreshTokens ??= new List<RefreshToken>();
+            var allExistingValidToken = await _refreshTokenRepository.GetAll(false).Where(rt => rt.UserId == user.Id ).ToListAsync();
+
+            // Check if user already has a valid refresh token that we can reuse
+            var existingValidToken = allExistingValidToken.OrderByDescending(rt => rt.ExpiryDate).FirstOrDefault(rt => rt.ExpiryDate > DateTime.UtcNow.AddDays(1));// Still has at least 1 day validity
+          
+
+            if (existingValidToken != null)
+            {
+                // Reuse existing token
+                refreshToken = existingValidToken.Token;
+            }
+            else
+            {
+                // Generate a new refresh token
+                refreshToken = GenerateRefreshToken();
+
+                // Ensure we don't keep too many tokens per user (limit to 4 most recent)
+                const int maxTokensPerUser = 4;
+                if (allExistingValidToken.Count >= maxTokensPerUser)
+                {
+                    // Remove oldest tokens, keeping only the most recent ones
+                    var tokensToRemove = allExistingValidToken
+                        .OrderByDescending(rt => rt.ExpiryDate)
+                        .Skip(maxTokensPerUser - 1) // Skip the N-1 most recent tokens (I am adding one)
+                        .ToList();
+
+                    foreach (var oldToken in tokensToRemove)
+                    {
+                      
+                        _refreshTokenRepository.Delete(oldToken);
+                    }
+                }
+
+                // Add the new token
+                user.RefreshTokens.Add(new RefreshToken
+                {
+                    Token = refreshToken,
+                    ExpiryDate = DateTime.UtcNow.AddDays(7),
+                    UserId = user.Id
+                });
+
+                await _refreshTokenRepository.SaveChangesAsync();
+            }
 
             return new AuthResult
             {
@@ -91,6 +132,8 @@ namespace Reconciliation.Infrastructure.Services
                 ExpireAt = expiration,
                 UserId = user.Id,
                 Email = user.Email,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
                 Roles = userRoles.ToList(),
                 Permissions = permissions
             };
@@ -137,6 +180,10 @@ namespace Reconciliation.Infrastructure.Services
                 {
                     await _userManager.AddToRoleAsync(user, model.Role);
                 }
+            }
+            else
+            {
+                await _userManager.AddToRoleAsync(user, "User");
             }
             // Generate tokens
             var roles = await _userManager.GetRolesAsync(user);

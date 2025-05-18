@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Reconciliation.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ab6448bb0c2adc4c46bd7bcd846c9ec584452626")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+28b37f4e26078be3a8d03323ccf12a5a14513d96")]
 [assembly: System.Reflection.AssemblyProductAttribute("Reconciliation.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Reconciliation.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

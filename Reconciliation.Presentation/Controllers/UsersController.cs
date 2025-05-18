@@ -4,10 +4,13 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Reconciliation.Application.DTOs;
+using Reconciliation.Application.Extensions;
 using Reconciliation.Application.Interfaces.Services;
 using Reconciliation.Domain.Entities;
 using Reconciliation.Infrastructure.Authorization;
+using System.Linq.Expressions;
 using System.Security.Claims;
+using static Reconciliation.Infrastructure.Authorization.Permissions;
 
 namespace Reconciliation.Presentation.Controllers
 {
@@ -28,21 +31,36 @@ namespace Reconciliation.Presentation.Controllers
 
         [HttpGet]
         [Permission(Permissions.Users.View)]
-        public async Task<IActionResult> GetAllUsers()
+        public async Task<ActionResult<PaginatedList<ApplicationUserDto>>> GetAllUsers([FromQuery] GetPaginatedUserInput input)
         {
-            var users = await _userManager.Users
-                .Select(u => new
-                {
-                    u.Id,
-                    u.Email,
-                    u.FirstName,
-                    u.LastName,
-                    u.IsActive,
-                    u.LastLoginAt
-                })
-                .ToListAsync();
+            var efQuery =  _userManager.Users.AsQueryable();
+            // Apply filters using the generic extension
+            efQuery = efQuery.ApplyFilters(input, BuildUserFilterExpressions);
+            // Apply sorting using the generic extension
+            efQuery = efQuery.ApplySorting(input,
+                _ => c => c.FirstName, null);
+            var count = await efQuery.CountAsync();
+            var users = await efQuery.Skip((input.PageIndex - 1) * input.PageSize).Take(input.PageSize).ToListAsync();
+            var usersDto = users.Select(r => new ApplicationUserDto
+            {
+                Id = r.Id,
+                FirstName = r.FirstName,
+                LastName = r.LastName,
+                Email = r.Email,
+                UserName = r.UserName,
+                IsActive = r.IsActive,
+                LastLoginAt = r.LastLoginAt,
 
-            return Ok(users);
+            }).ToList();
+
+            var result = new PaginatedList<ApplicationUserDto>(
+            usersDto,
+            count,
+            input.PageIndex,
+            input.PageSize);
+           
+
+            return Ok(result);
         }
 
         [HttpGet("{id}")]
@@ -213,6 +231,16 @@ namespace Reconciliation.Presentation.Controllers
             }
 
             return NoContent();
+        }
+
+        private IEnumerable<Expression<Func<ApplicationUser, bool>>> BuildUserFilterExpressions(GetPaginatedUserInput input)
+        {
+            var expressions = new List<Expression<Func<ApplicationUser, bool>>>();
+            if (!string.IsNullOrWhiteSpace(input.Filter))
+            {
+                expressions.Add(r => r.FirstName.Contains(input.Filter) || r.LastName.Contains(input.Filter) );
+            }
+            return expressions;
         }
     }
 }

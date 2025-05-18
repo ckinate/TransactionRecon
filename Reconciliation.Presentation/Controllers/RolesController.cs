@@ -3,9 +3,11 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Reconciliation.Application.DTOs;
+using Reconciliation.Application.Extensions;
 using Reconciliation.Application.Interfaces.Services;
 using Reconciliation.Domain.Entities;
 using Reconciliation.Infrastructure.Authorization;
+using System.Linq.Expressions;
 
 namespace Reconciliation.Presentation.Controllers
 {
@@ -25,23 +27,38 @@ namespace Reconciliation.Presentation.Controllers
         }
 
         [HttpGet]
-        [Permission(Permissions.Users.View)]
-        public IActionResult GetAllRoles()
+        [Permission(Permissions.Roles.View)]
+        public async  Task<ActionResult<PaginatedList<RoleDto>>> GetAllRoles([FromQuery] GetPaginatedRoleInput input)
         {
-            var roles = _roleManager.Roles
-                .Select(r => new
-                {
-                    r.Id,
-                    r.Name,
-                    r.Description
-                })
-                .ToList();
+            var efQuery = _roleManager.Roles.Include(p=>p.RolePermissions).AsQueryable();
+            // Apply filters using the generic extension
+            efQuery = efQuery.ApplyFilters(input, BuildRoleFilterExpressions);
+            // Apply sorting using the generic extension
+            efQuery = efQuery.ApplySorting(input,
+                _ => c => c.Name, null);
+            var count = await efQuery.CountAsync();
+            var roles = await efQuery.Skip((input.PageIndex - 1) * input.PageSize) .Take(input.PageSize).ToListAsync();
 
-            return Ok(roles);
+            var rolesDto = roles.Select(r => new RoleDto
+            {
+                Id = r.Id,
+                Name = r.Name,
+                Description = r.Description
+
+            }).ToList();
+
+            var result = new PaginatedList<RoleDto>(
+            rolesDto,
+            count,
+            input.PageIndex,
+            input.PageSize);
+
+
+            return Ok(result);
         }
 
         [HttpGet("{id}")]
-        [Permission(Permissions.Users.View)]
+        [Permission(Permissions.Roles.View)]
         public async Task<IActionResult> GetRole(string id)
         {
             var role = await _roleManager.FindByIdAsync(id);
@@ -65,7 +82,7 @@ namespace Reconciliation.Presentation.Controllers
         }
 
         [HttpPost]
-        [Permission(Permissions.Users.Create)]
+        [Permission(Permissions.Roles.Create)]
         public async Task<IActionResult> CreateRole([FromBody] RoleDto model)
         {
             if (!ModelState.IsValid)
@@ -95,7 +112,7 @@ namespace Reconciliation.Presentation.Controllers
         }
 
         [HttpPut("{id}")]
-        [Permission(Permissions.Users.Edit)]
+        [Permission(Permissions.Roles.Edit)]
         public async Task<IActionResult> UpdateRole(string id, [FromBody] RoleDto model)
         {
             var role = await _roleManager.FindByIdAsync(id);
@@ -119,7 +136,7 @@ namespace Reconciliation.Presentation.Controllers
         }
 
         [HttpDelete("{id}")]
-        [Permission(Permissions.Users.Delete)]
+        [Permission(Permissions.Roles.Delete)]
         public async Task<IActionResult> DeleteRole(string id)
         {
             var role = await _roleManager.FindByIdAsync(id);
@@ -140,7 +157,7 @@ namespace Reconciliation.Presentation.Controllers
         }
 
         [HttpPost("{id}/permissions")]
-        [Permission(Permissions.Users.Edit)]
+        [Permission(Permissions.Roles.Edit)]
         public async Task<IActionResult> AddPermissionToRole(string id, [FromBody] PermissionDto model)
         {
             var role = await _roleManager.FindByIdAsync(id);
@@ -161,7 +178,7 @@ namespace Reconciliation.Presentation.Controllers
         }
 
         [HttpDelete("{id}/permissions/{permission}")]
-        [Permission(Permissions.Users.Edit)]
+        [Permission(Permissions.Roles.Edit)]
         public async Task<IActionResult> RemovePermissionFromRole(string id, string permission)
         {
             var role = await _roleManager.FindByIdAsync(id);
@@ -262,11 +279,20 @@ namespace Reconciliation.Presentation.Controllers
         }
 
         [HttpGet("permissions")]
-        [Permission(Permissions.Users.View)]
         public async Task<IActionResult> GetAllPermissions()
         {
             var permissions = await _permissionService.GetAllDefinedPermissionsAsync();
             return Ok(permissions);
+        }
+
+        private IEnumerable<Expression<Func<ApplicationRole, bool>>> BuildRoleFilterExpressions(GetPaginatedRoleInput input)
+        {
+            var expressions = new List<Expression<Func<ApplicationRole, bool>>>();
+            if (!string.IsNullOrWhiteSpace(input.Filter))
+            {
+                expressions.Add(r => r.Name.Contains(input.Filter) || r.Description.Contains(input.Filter));
+            }
+            return expressions;
         }
     }
 }
