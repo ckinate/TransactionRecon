@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Reconciliation.Application.DTOs;
 using Reconciliation.Application.Interfaces.Repository;
 using Reconciliation.Application.Interfaces.Services;
 using Reconciliation.Domain.Common;
@@ -72,7 +73,7 @@ namespace Reconciliation.Infrastructure.Services
             return ResultValue<bool>.Ok(true,"Created Successfully");
         }
 
-        public Task<List<string>> GetAllDefinedPermissionsAsync()
+        public async Task<List<string>> GetAllDefinedPermissionsAsync()
         {
             // Collect all permissions from the static Permissions class using reflection
             var permissionProperties = typeof(Permissions)
@@ -82,7 +83,48 @@ namespace Reconciliation.Infrastructure.Services
                 .Select(field => field.GetValue(null).ToString())
                 .ToList();
 
-            return Task.FromResult(permissionProperties);
+            return await Task.FromResult(permissionProperties);
+        }
+
+        public async Task<List<PermissionNode>> GetPermissionsTreeAsync()
+        {
+            // Get flat list of permissions
+            var allPermissions = await GetAllDefinedPermissionsAsync();
+            // Convert to tree structure
+            var permissionTree = new List<PermissionNode>();
+            var permissionGroups = new Dictionary<string, PermissionNode>();
+            foreach (var permission in allPermissions)
+            {
+                var parts = permission.Split('.');
+                if (parts.Length != 2)
+                    continue;
+
+                var groupName = parts[0];
+                var actionName = parts[1];
+
+                // Create group if it doesn't exist
+                if (!permissionGroups.ContainsKey(groupName))
+                {
+                    var groupNode = new PermissionNode
+                    {
+                        Name = groupName,
+                        Key = groupName,
+                        IsGroup = true
+                    };
+                    permissionGroups[groupName] = groupNode;
+                    permissionTree.Add(groupNode);
+                }
+
+                // Add permission to group
+                permissionGroups[groupName].Children.Add(new PermissionNode
+                {
+                    Name = actionName,
+                    Key = permission,
+                    IsGroup = false
+                });
+            }
+
+            return permissionTree;
         }
 
         public async Task<IEnumerable<string>> GetRolePermissionsAsync(string roleId)
