@@ -284,6 +284,12 @@ namespace Reconciliation.Presentation.Controllers
             var permissions = await _permissionService.GetAllDefinedPermissionsAsync();
             return Ok(permissions);
         }
+        [HttpGet("permissionsTree")]
+        public async Task<ActionResult<List<PermissionNode>>> GetPermissionsTree()
+        {
+            var permissions = await _permissionService.GetPermissionsTreeAsync();
+            return Ok(permissions);
+        }
 
         private IEnumerable<Expression<Func<ApplicationRole, bool>>> BuildRoleFilterExpressions(GetPaginatedRoleInput input)
         {

@@ -18,5 +18,6 @@ namespace Reconciliation.Application.Interfaces.Services
         Task<ResultValue<bool>> RemovePermissionFromRoleAsync(string roleId, string permission);
         Task<IEnumerable<string>> GetRolePermissionsAsync(string roleId);
         Task<bool> HasPermissionAsync(string userId, string permissionName);
+        Task<List<PermissionNode>> GetPermissionsTreeAsync();
     }
 }
