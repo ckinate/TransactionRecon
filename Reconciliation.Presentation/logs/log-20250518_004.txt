@@ -87,3 +87,5 @@ System.InvalidOperationException: An exception has been raised that is likely du
    at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
    at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
    at Reconciliation.Presentation.Middlewares.ExceptionHandlingMiddleware.Invoke(HttpContext context) in C:\AllFiles\Christian\Christian\TransactionRecon\Reconciliation.Presentation\Middlewares\ExceptionHandlingMiddleware.cs:line 22
+2025-05-18 13:19:23 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2025-05-18 13:19:23 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
