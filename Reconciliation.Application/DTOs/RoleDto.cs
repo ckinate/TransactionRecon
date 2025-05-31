@@ -12,6 +12,6 @@ namespace Reconciliation.Application.DTOs
         public string Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public  ICollection<RolePermission>? RolePermissions { get; set; }
+        public List<string>? RolePermissions { get; set; }
     }
 }

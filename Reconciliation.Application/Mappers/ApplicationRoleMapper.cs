@@ -35,7 +35,7 @@ namespace Reconciliation.Application.Mappers
                 // Manually set the Role reference to avoid circular reference
                 foreach (var rolePermission in dto.RolePermissions)
                 {
-                    rolePermission.Role = dto;
+                   // rolePermission.Role = dto;
                 }
             }
 
@@ -59,9 +59,9 @@ namespace Reconciliation.Application.Mappers
             if (depth.HasFlag(MappingDepth.IncludeChildren) && dto.RolePermissions != null)
             {
                 // When mapping children, don't map their parents (to avoid circular references)
-                entity.RolePermissions = dto.RolePermissions
-                    .Select(rp => rp.ToEntity(MappingDepth.None))
-                    .ToList();
+                //entity.RolePermissions = dto.RolePermissions
+                //    .Select(rp => rp.ToEntity(MappingDepth.None))
+                //    .ToList();
 
                 // Manually set the Role reference to avoid circular reference
                 foreach (var rolePermission in entity.RolePermissions)

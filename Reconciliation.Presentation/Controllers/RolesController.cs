@@ -39,12 +39,34 @@ namespace Reconciliation.Presentation.Controllers
             var count = await efQuery.CountAsync();
             var roles = await efQuery.Skip((input.PageIndex - 1) * input.PageSize) .Take(input.PageSize).ToListAsync();
 
-            var rolesDto = roles.Select(r => new RoleDto
-            {
-                Id = r.Id,
-                Name = r.Name,
-                Description = r.Description
+            //var rolesDto = roles.Select(r => new RoleDto
+            //{
+            //    Id = r.Id,
+            //    Name = r.Name,
+            //    Description = r.Description,
+            //    RolePermissions = r.RolePermissions.Select(rp => new RolePermissionDto
+            //    {
+            //        Id = rp.Id,
+            //        PermissionName = rp.PermissionName
+            //    }).ToList()
 
+            //}).ToList();
+
+            var rolesDto = roles.Select(r =>
+            {
+                // Break circular reference
+                foreach (var rp in r.RolePermissions)
+                {
+                    rp.Role = null;
+                }
+
+                return new RoleDto
+                {
+                    Id = r.Id,
+                    Name = r.Name,
+                    Description = r.Description,
+                    RolePermissions = r.RolePermissions.Select(rp => rp.PermissionName).ToList()
+                };
             }).ToList();
 
             var result = new PaginatedList<RoleDto>(

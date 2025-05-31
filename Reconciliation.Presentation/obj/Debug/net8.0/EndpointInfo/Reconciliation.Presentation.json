@@ -1016,7 +1016,7 @@
           "rolePermissions": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Reconciliation.Domain.Entities.RolePermission"
+              "type": "string"
             },
             "nullable": true
           }
@@ -1074,63 +1074,6 @@
           },
           "isActive": {
             "type": "boolean"
-          }
-        },
-        "additionalProperties": false
-      },
-      "Reconciliation.Domain.Entities.ApplicationRole": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "nullable": true
-          },
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "normalizedName": {
-            "type": "string",
-            "nullable": true
-          },
-          "concurrencyStamp": {
-            "type": "string",
-            "nullable": true
-          },
-          "description": {
-            "type": "string",
-            "nullable": true
-          },
-          "rolePermissions": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Reconciliation.Domain.Entities.RolePermission"
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "Reconciliation.Domain.Entities.RolePermission": {
-        "required": [
-          "roleId"
-        ],
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "roleId": {
-            "type": "string",
-            "nullable": true
-          },
-          "permissionName": {
-            "type": "string",
-            "nullable": true
-          },
-          "role": {
-            "$ref": "#/components/schemas/Reconciliation.Domain.Entities.ApplicationRole"
           }
         },
         "additionalProperties": false

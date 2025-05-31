@@ -1,10 +1,6 @@
 {
   "version": 2,
-<<<<<<< HEAD
   "dgSpecHash": "sg9u065lw/0=",
-=======
-  "dgSpecHash": "nhvI8Tan0VQ=",
->>>>>>> e6211b541ff2954880d59b8d957b4fdad96bc32d
   "success": true,
   "projectFilePath": "C:\\Users\\manufacture\\Documents\\Courses\\Application\\TransactionReconciliation\\ReconciliationApi\\Reconciliation.Presentation\\Reconciliation.Presentation.csproj",
   "expectedPackageFiles": [

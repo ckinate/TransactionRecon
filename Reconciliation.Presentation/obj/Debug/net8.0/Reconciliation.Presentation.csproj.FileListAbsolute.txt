@@ -1,11 +1,3 @@
-C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\ReconciliationApi\Reconciliation.Presentation\obj\Debug\net8.0\Reconciliation.Presentation.csproj.AssemblyReference.cache
-C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\ReconciliationApi\Reconciliation.Presentation\obj\Debug\net8.0\Reconciliation.Presentation.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\ReconciliationApi\Reconciliation.Presentation\obj\Debug\net8.0\Reconciliation.Presentation.AssemblyInfoInputs.cache
-C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\ReconciliationApi\Reconciliation.Presentation\obj\Debug\net8.0\Reconciliation.Presentation.AssemblyInfo.cs
-C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\ReconciliationApi\Reconciliation.Presentation\obj\Debug\net8.0\Reconciliation.Presentation.csproj.CoreCompileInputs.cache
-C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\ReconciliationApi\Reconciliation.Presentation\obj\Debug\net8.0\Reconciliation.Presentation.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\ReconciliationApi\Reconciliation.Presentation\obj\Debug\net8.0\Reconciliation.Presentation.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\ReconciliationApi\Reconciliation.Presentation\obj\Debug\net8.0\Reconciliation.Presentation.sourcelink.json
 C:\AllFiles\Christian\Christian\TransactionRecon\Reconciliation.Presentation\bin\Debug\net8.0\appsettings.Development.json
 C:\AllFiles\Christian\Christian\TransactionRecon\Reconciliation.Presentation\bin\Debug\net8.0\appsettings.json
 C:\AllFiles\Christian\Christian\TransactionRecon\Reconciliation.Presentation\bin\Debug\net8.0\Reconciliation.Presentation.staticwebassets.endpoints.json
@@ -271,6 +263,14 @@ C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\Rec
 C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\ReconciliationApi\Reconciliation.Presentation\bin\Debug\net8.0\Reconciliation.Infrastructure.pdb
 C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\ReconciliationApi\Reconciliation.Presentation\bin\Debug\net8.0\Reconciliation.Application.pdb
 C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\ReconciliationApi\Reconciliation.Presentation\bin\Debug\net8.0\Reconciliation.Domain.pdb
+C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\ReconciliationApi\Reconciliation.Presentation\obj\Debug\net8.0\Reconciliation.Presentation.csproj.AssemblyReference.cache
+C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\ReconciliationApi\Reconciliation.Presentation\obj\Debug\net8.0\Reconciliation.Presentation.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\ReconciliationApi\Reconciliation.Presentation\obj\Debug\net8.0\Reconciliation.Presentation.AssemblyInfoInputs.cache
+C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\ReconciliationApi\Reconciliation.Presentation\obj\Debug\net8.0\Reconciliation.Presentation.AssemblyInfo.cs
+C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\ReconciliationApi\Reconciliation.Presentation\obj\Debug\net8.0\Reconciliation.Presentation.csproj.CoreCompileInputs.cache
+C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\ReconciliationApi\Reconciliation.Presentation\obj\Debug\net8.0\Reconciliation.Presentation.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\ReconciliationApi\Reconciliation.Presentation\obj\Debug\net8.0\Reconciliation.Presentation.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\ReconciliationApi\Reconciliation.Presentation\obj\Debug\net8.0\Reconciliation.Presentation.sourcelink.json
 C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\ReconciliationApi\Reconciliation.Presentation\obj\Debug\net8.0\scopedcss\bundle\Reconciliation.Presentation.styles.css
 C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\ReconciliationApi\Reconciliation.Presentation\obj\Debug\net8.0\staticwebassets.build.json
 C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\ReconciliationApi\Reconciliation.Presentation\obj\Debug\net8.0\staticwebassets.development.json
