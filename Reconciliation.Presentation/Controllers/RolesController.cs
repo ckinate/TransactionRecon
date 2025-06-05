@@ -79,6 +79,21 @@ namespace Reconciliation.Presentation.Controllers
             return Ok(result);
         }
 
+        [HttpGet("role")]
+        [Permission(Permissions.Roles.View)]
+        public async Task<ActionResult<List<RoleDto>>> GetRoles()
+        {
+            var roles = await _roleManager.Roles.Include(p => p.RolePermissions).ToListAsync();
+         var roleDto =  roles.Select(r => new RoleDto
+             {
+                Id = r.Id,
+                Name = r.Name,
+                Description = r.Description
+            }).ToList();
+
+            return Ok(roleDto);
+        }
+
         [HttpGet("{id}")]
         [Permission(Permissions.Roles.View)]
         public async Task<IActionResult> GetRole(string id)
@@ -129,6 +144,14 @@ namespace Reconciliation.Presentation.Controllers
             {
                 return BadRequest(result.Errors);
             }
+            if (model.RolePermissions.Count > 0)
+            {
+                foreach (var item in model.RolePermissions)
+                {
+                    await _permissionService.AddPermissionToRoleAsync(role.Id, item);
+                } 
+
+            }
 
             return CreatedAtAction(nameof(GetRole), new { id = role.Id }, null);
         }
@@ -152,6 +175,15 @@ namespace Reconciliation.Presentation.Controllers
             if (!result.Succeeded)
             {
                 return BadRequest(result.Errors);
+            }
+
+            if (model.RolePermissions.Count > 0)
+            {
+                foreach (var item in model.RolePermissions)
+                {
+                    await _permissionService.UpdatePermissionToRoleAsync(id, item);
+                }
+
             }
 
             return NoContent();

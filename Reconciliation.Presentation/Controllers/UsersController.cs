@@ -85,7 +85,7 @@ namespace Reconciliation.Presentation.Controllers
                 user.LastName,
                 user.IsActive,
                 user.LastLoginAt,
-                Roles = roles,
+                Role = roles.FirstOrDefault(),
                 Permissions = permissions
             });
         }

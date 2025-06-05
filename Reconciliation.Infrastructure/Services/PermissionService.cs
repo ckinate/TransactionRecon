@@ -51,6 +51,51 @@ namespace Reconciliation.Infrastructure.Services
             return ResultValue<bool>.Ok(true,"Permission added successfully");
         }
 
+        public async Task<ResultValue<bool>> UpdatePermissionToRoleAsync(string roleId, string permission)
+        {
+            // Check if permission already exists for role
+            var exists = await _rolePermissionRepository.GetAll(false).ToListAsync();
+
+
+            var roleIdExist = exists.Where(rp => rp.RoleId == roleId);
+            var permissionExist = exists.Where(rp => rp.RoleId == roleId && rp.PermissionName == permission);
+            var noPermission = exists.Where(rp => rp.RoleId == roleId && rp.PermissionName != permission);
+
+            if (!roleIdExist.Any())
+            {
+                _rolePermissionRepository.Add(new RolePermission
+                {
+                    RoleId = roleId,
+                    PermissionName = permission
+                });
+                // return ResultValue<bool>.Fail($"The role with roleId {roleId} does not exist");
+            }
+            else if (permissionExist.Any())
+            {
+                var newRolePermission = roleIdExist.FirstOrDefault();
+                newRolePermission.PermissionName = permission;
+                _rolePermissionRepository.Update(newRolePermission);
+                //_rolePermissionRepository.Update(new RolePermission
+                //{
+                //    RoleId = roleId,
+                //    PermissionName = permission
+                //});
+            }
+            else if (noPermission.Any()) 
+            {
+                _rolePermissionRepository.Add(new RolePermission
+                {
+                    RoleId = roleId,
+                    PermissionName = permission
+                });
+            }
+
+           
+
+            await _rolePermissionRepository.SaveChangesAsync();
+            return ResultValue<bool>.Ok(true, "Permission updated successfully");
+        }
+
         public async Task<ResultValue <bool>> AddPermissionToUserAsync(string userId, string permission)
         {
             // Check if permission already exists

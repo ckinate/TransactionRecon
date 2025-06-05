@@ -25,5 +25,10 @@ namespace Reconciliation.Infrastructure.Authorization
             public const string Edit = "Roles.Edit";
             public const string Delete = "Roles.Delete";
         }
+        // Report Permission
+        public static class Reports
+        {
+            public const string View = "Reports.View";
+        }
     }
 }

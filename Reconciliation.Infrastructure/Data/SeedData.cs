@@ -70,6 +70,7 @@ namespace Reconciliation.Infrastructure.Data
                  new Permission() { Name= "Users.Delete",Description = "Can Delete Users"},
                  new Permission() { Name= "Roles.Delete",Description = "Can Delete Roles"},
                  new Permission() { Name= "Roles.Create",Description = "Can Create Roles"},
+                 new Permission() { Name= "Roles.Edit",Description = "Can Edit Roles"},
                  new Permission() { Name= "Roles.View",Description = "Can View Roles"},
                  new Permission() { Name= "Reports.View",Description = "Can View Reports"}
                
