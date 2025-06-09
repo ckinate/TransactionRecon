@@ -7,6 +7,7 @@ using Reconciliation.Application.DTOs;
 using Reconciliation.Application.Extensions;
 using Reconciliation.Application.Interfaces.Services;
 using Reconciliation.Domain.Entities;
+using Reconciliation.Domain.Extensions;
 using Reconciliation.Infrastructure.Authorization;
 using System.Linq.Expressions;
 using System.Security.Claims;
@@ -164,11 +165,54 @@ namespace Reconciliation.Presentation.Controllers
             user.LastName = model.LastName;
             user.IsActive = model.IsActive;
 
+           
+
+
             var result = await _userManager.UpdateAsync(user);
+
+            //Update Password if Provided
+
+            if (!string.IsNullOrEmpty(model.NewPassword) && !string.IsNullOrEmpty(model.CurrentPassword))
+            {
+                var changePasswordResult = await _userManager.ChangePasswordAsync(user, model.CurrentPassword, model.NewPassword);
+                if (!changePasswordResult.Succeeded)
+                {
+                    return BadRequest(changePasswordResult.Errors);
+                }
+            }
+
 
             if (!result.Succeeded)
             {
                 return BadRequest(result.Errors);
+            }
+
+            // Update role if provided
+            if (!string.IsNullOrEmpty(model.Role))
+            {
+                // Get current roles
+                var currentRoles = await _userManager.GetRolesAsync(user);
+                if (currentRoles.FirstOrDefault() != model.Role)
+                {
+                    // Remove all current roles
+                    if (currentRoles.Any())
+                    {
+                        var removeRolesResult = await _userManager.RemoveFromRolesAsync(user, currentRoles);
+                        if (!removeRolesResult.Succeeded)
+                        {
+                            return BadRequest(removeRolesResult.Errors);
+                        }
+                    }
+
+                    // Add new role
+                    var addRoleResult = await _userManager.AddToRoleAsync(user, model.Role);
+                    if (!addRoleResult.Succeeded)
+                    {
+                        return BadRequest(addRoleResult.Errors);
+                    }
+
+                }
+
             }
 
             return NoContent();

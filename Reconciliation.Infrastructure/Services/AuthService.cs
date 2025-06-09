@@ -16,6 +16,7 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using static Reconciliation.Infrastructure.Authorization.Permissions;
 
 namespace Reconciliation.Infrastructure.Services
 {
@@ -320,6 +321,7 @@ namespace Reconciliation.Infrastructure.Services
                 .Where(rp => roles.Contains(rp.Role.Name))
                 .Select(rp => rp.PermissionName)
                 .ToListAsync();
+            
 
             // Combine and remove duplicates
             return userPermissions.Union(rolePermissions).Distinct().ToList();
