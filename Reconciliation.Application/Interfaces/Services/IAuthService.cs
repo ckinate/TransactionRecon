@@ -13,5 +13,7 @@ namespace Reconciliation.Application.Interfaces.Services
         Task<AuthResult> RegisterAsync(RegisterDto model);
         Task<AuthResult> RefreshTokenAsync(string token, string refreshToken);
         Task RevokeTokenAsync(string refreshToken);
+        Task<AuthResult> VerifyEmail(string userId, string token);
+        Task<AuthResult> ResendVerificationEmail(ResendVerificationDto model);
     }
 }

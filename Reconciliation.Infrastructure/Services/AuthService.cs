@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Reconciliation.Application.DTOs;
@@ -12,6 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Net;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
@@ -28,12 +30,15 @@ namespace Reconciliation.Infrastructure.Services
         private readonly IGenericRepository<RefreshToken> _refreshTokenRepository;
         private readonly IConfiguration _configuration;
         private readonly IGenericRepository<RolePermission> _rolePermissionRepository;
+        private readonly IEmailService _emailService;
+        private readonly ILogger<AuthService> _logger;
         public AuthService(
     UserManager<ApplicationUser> userManager,
     RoleManager<ApplicationRole> roleManager,
     IGenericRepository<UserPermission> userPermissionRepository,
     IGenericRepository<RefreshToken> refreshTokenRepository, IConfiguration configuration,
-    IGenericRepository<RolePermission> rolePermissionRepository)
+    IGenericRepository<RolePermission> rolePermissionRepository, IEmailService emailService,
+    ILogger<AuthService> logger)
         {
             _userManager = userManager;
             _roleManager = roleManager;
@@ -41,6 +46,8 @@ namespace Reconciliation.Infrastructure.Services
             _refreshTokenRepository = refreshTokenRepository;
             _configuration = configuration;
             _rolePermissionRepository = rolePermissionRepository;
+            _emailService = emailService;
+            _logger = logger;
         }
 
         public async Task<AuthResult> LoginAsync(LoginDto model)
@@ -61,9 +68,20 @@ namespace Reconciliation.Infrastructure.Services
                 return new AuthResult
                 {
                     Success = false,
-                    Message = "User account is deactivated"
+                    Message = "Your account is not active. Please verify your email address if you have not."
                 };
             }
+
+            // Check if email is confirmed
+            if (!user.EmailConfirmed)
+            {
+                return new AuthResult
+                {
+                    Success = false,
+                    Message = "Please verify your email address before logging in."
+                };
+            }
+
             // Update last login timestamp
             user.LastLoginAt = DateTime.UtcNow;
             await _userManager.UpdateAsync(user);
@@ -161,7 +179,8 @@ namespace Reconciliation.Infrastructure.Services
                 FirstName = model.FirstName,
                 LastName = model.LastName,
                 CreatedAt = DateTime.UtcNow,
-                IsActive = true
+                IsActive = false, // User starts as INACTIVE
+                EmailConfirmed = false // ASP.NET Identity built-in property
             };
             var result = await _userManager.CreateAsync(user, model.Password);
 
@@ -185,37 +204,73 @@ namespace Reconciliation.Infrastructure.Services
             else
             {
                 await _userManager.AddToRoleAsync(user, "User");
-            }
-            // Generate tokens
-            var roles = await _userManager.GetRolesAsync(user);
-            var permissions = await GetUserPermissionsAsync(user.Id);
-            var (token, expiration) = GenerateJwtToken(user, roles, permissions);
-            var refreshToken = GenerateRefreshToken();
 
-            // Save refresh token
-            user.RefreshTokens = new List<RefreshToken>
-        {
-            new RefreshToken
+            }
+
+            // Generate email confirmation token
+            var emailConfirmationToken = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+            // Create verification link
+            var encodedToken = WebUtility.UrlEncode(emailConfirmationToken);
+            var verificationLink = $"{_configuration["AppSettings:BaseUrl"]}/auth/verify-email?userId={user.Id}&token={encodedToken}";
+
+            // Send verification email
+            try
             {
-                Token = refreshToken,
-                ExpiryDate = DateTime.UtcNow.AddDays(7),
-                UserId = user.Id
+                await _emailService.SendEmailVerificationAsync(user.Email, verificationLink);
             }
-        };
-
-            await _refreshTokenRepository.SaveChangesAsync();
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Failed to send verification email to {user.Email}");
+                // Optionally delete the user if email sending fails
+                await _userManager.DeleteAsync(user);
+                return new AuthResult
+                {
+                    Success = false,
+                    Message = "Failed to send verification email. Please try again."
+                };
+            }
+            // DO NOT return tokens yet - user needs to verify email first
             return new AuthResult
             {
                 Success = true,
-                Token = token,
-                RefreshToken = refreshToken,
-                ExpireAt = expiration,
+                Message = "Registration successful! Please check your email to verify your account before logging in.",
                 UserId = user.Id,
-                Email = user.Email,
-                Roles = roles.ToList(),
-                Permissions = permissions
+                Email = user.Email
+                // No tokens provided until email is verified
             };
+
+            // Generate tokens
+            //var roles = await _userManager.GetRolesAsync(user);
+            //var permissions = await GetUserPermissionsAsync(user.Id);
+            //var (token, expiration) = GenerateJwtToken(user, roles, permissions);
+            //var refreshToken = GenerateRefreshToken();
+
+            // Save refresh token
+        //    user.RefreshTokens = new List<RefreshToken>
+        //{
+        //    new RefreshToken
+        //    {
+        //        Token = refreshToken,
+        //        ExpiryDate = DateTime.UtcNow.AddDays(7),
+        //        UserId = user.Id
+        //    }
+       // };
+
+            //await _refreshTokenRepository.SaveChangesAsync();
+            //return new AuthResult
+            //{
+            //    Success = true,
+            //    Token = token,
+            //    RefreshToken = refreshToken,
+            //    ExpireAt = expiration,
+            //    UserId = user.Id,
+            //    Email = user.Email,
+            //    Roles = roles.ToList(),
+            //    Permissions = permissions
+            //};
         }
+
+
 
         public async Task<AuthResult> RefreshTokenAsync(string token, string refreshToken)
         {
@@ -298,6 +353,113 @@ namespace Reconciliation.Infrastructure.Services
             token.IsRevoked = true;
             await _refreshTokenRepository.SaveChangesAsync();
         }
+
+        public async Task<AuthResult> VerifyEmail(string userId, string token)
+        {
+            if (string.IsNullOrEmpty(userId) || string.IsNullOrEmpty(token))
+            {
+                return new AuthResult
+                {
+                    Success = false,
+                    Message = "Invalid verification link"
+                };
+            }
+
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                return new AuthResult
+                {
+                    Success = false,
+                    Message = "Invalid verification link"
+                };
+              
+            }
+
+            if (user.EmailConfirmed)
+            {
+                return new AuthResult
+                {
+                    Success = true,
+                    Message = "Email already verified. You can now login."
+                };
+              
+            }
+            var decodedToken = WebUtility.UrlDecode(token);
+            var result = await _userManager.ConfirmEmailAsync(user, decodedToken);
+
+            if (result.Succeeded)
+            {
+                // Activate the user account
+                user.IsActive = true;
+                user.EmailConfirmed = true;
+                await _userManager.UpdateAsync(user);
+
+                // Redirect to success page or return success response
+                return new AuthResult
+                {
+                    Success = true,
+                    Message = "Email verified successfully! Your account is now active. You can login now"
+                };
+               
+            }
+            return new AuthResult
+            {
+                Success = false,
+                Message = "Email verification failed. The link may be expired or invalid."
+            };
+        }
+
+        public async Task<AuthResult> ResendVerificationEmail(ResendVerificationDto model)
+        {
+            var user = await _userManager.FindByEmailAsync(model.Email);
+            if (user == null)
+            {
+                // Don't reveal if user exists or not for security
+                return new AuthResult
+                {
+                    Success = true,
+                    Message = "If the email exists in our system, a verification email has been sent."
+                };
+            
+            }
+
+            if (user.EmailConfirmed)
+            {
+                return new AuthResult
+                {
+                    Success = false,
+                    Message = "Email is already verified."
+                };
+               
+            }
+
+            var emailConfirmationToken = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+            var encodedToken = WebUtility.UrlEncode(emailConfirmationToken);
+            var verificationLink = $"{_configuration["AppSettings:BaseUrl"]}/auth/verify-email?userId={user.Id}&token={encodedToken}";
+
+            try
+            {
+                await _emailService.SendEmailVerificationAsync(user.Email, verificationLink);
+                return new AuthResult
+                {
+                    Success = true,
+                    Message = "Verification email sent successfully."
+                };
+              
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Failed to resend verification email to {user.Email}");
+                return new AuthResult
+                {
+                    Success = false,
+                    Message = "Failed to send verification email."
+                };
+              
+            }
+        }
+
 
 
 

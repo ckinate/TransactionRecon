@@ -1,8 +1,14 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json.Linq;
 using Reconciliation.Application.DTOs;
 using Reconciliation.Application.Interfaces.Services;
+using Reconciliation.Infrastructure.Services;
+using System.Net;
+using static Reconciliation.Infrastructure.Authorization.Permissions;
 
 namespace Reconciliation.Presentation.Controllers
 {
@@ -78,6 +84,33 @@ namespace Reconciliation.Presentation.Controllers
             {
                 return BadRequest(new { Message = ex.Message });
             }
+        }
+        [HttpGet("verify-email")]
+        public async Task<ActionResult<AuthResult>> VerifyEmail(string userId, string token)
+        {
+            if (string.IsNullOrEmpty(userId) || string.IsNullOrEmpty(token))
+            {
+                return BadRequest("Invalid verification link");
+            }
+            var result = await _authService.VerifyEmail(userId, token);
+
+            return result;
+
+          
+        }
+
+        [HttpPost("resend-verification")]
+        public async Task<ActionResult<AuthResult>> ResendVerificationEmail([FromBody] ResendVerificationDto model)
+        {
+            if (string.IsNullOrEmpty(model.Email))
+            {
+                return BadRequest("Please enter your email");
+            }
+
+            var result = await _authService.ResendVerificationEmail(model);
+            return result;
+
+
         }
 
     }

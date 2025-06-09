@@ -49,6 +49,32 @@
   },
   {
     "ContainingType": "Reconciliation.Presentation.Controllers.AuthController",
+    "Method": "ResendVerificationEmail",
+    "RelativePath": "api/Auth/resend-verification",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "Reconciliation.Application.DTOs.ResendVerificationDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Reconciliation.Application.DTOs.AuthResult",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Reconciliation.Presentation.Controllers.AuthController",
     "Method": "RevokeToken",
     "RelativePath": "api/Auth/revoke-token",
     "HttpMethod": "POST",
@@ -62,6 +88,37 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Reconciliation.Presentation.Controllers.AuthController",
+    "Method": "VerifyEmail",
+    "RelativePath": "api/Auth/verify-email",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "token",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Reconciliation.Application.DTOs.AuthResult",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "Reconciliation.Presentation.Controllers.RolesController",

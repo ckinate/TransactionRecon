@@ -288,3 +288,4 @@ C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\Rec
 C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\ReconciliationApi\Reconciliation.Presentation\obj\Debug\net8.0\Reconciliation.Presentation.pdb
 C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\ReconciliationApi\Reconciliation.Presentation\obj\Debug\net8.0\Reconciliation.Presentation.genruntimeconfig.cache
 C:\Users\manufacture\Documents\Courses\Application\TransactionReconciliation\ReconciliationApi\Reconciliation.Presentation\obj\Debug\net8.0\ref\Reconciliation.Presentation.dll
+C:\AllFiles\Christian\Christian\TransactionRecon\Reconciliation.Presentation\bin\Debug\net8.0\Newtonsoft.Json.dll

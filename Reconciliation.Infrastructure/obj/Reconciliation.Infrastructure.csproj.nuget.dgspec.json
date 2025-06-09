@@ -248,6 +248,10 @@
             "Serilog.AspNetCore": {
               "target": "Package",
               "version": "[8.0.3, )"
+            },
+            "System.Net.Mail": {
+              "target": "Package",
+              "version": "[1.0.0-rtm-00002, )"
             }
           },
           "imports": [

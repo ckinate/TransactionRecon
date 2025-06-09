@@ -51,6 +51,7 @@ namespace Reconciliation.Infrastructure.Extensions
            // services.AddSingleton<ILoggerService, LoggerService>();
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IPermissionService, PermissionService>();
+            services.AddScoped<IEmailService, EmailService>();
 
 
             return services;
@@ -71,6 +72,7 @@ namespace Reconciliation.Infrastructure.Extensions
 
                 // User settings
                 opt.User.RequireUniqueEmail = true;
+                opt.SignIn.RequireConfirmedEmail = true;
             }).AddRoles<ApplicationRole>()
             .AddRoleManager<RoleManager<ApplicationRole>>()
             .AddSignInManager<SignInManager<ApplicationUser>>()
