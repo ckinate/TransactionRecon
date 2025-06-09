@@ -211,7 +211,8 @@ namespace Reconciliation.Infrastructure.Services
             var emailConfirmationToken = await _userManager.GenerateEmailConfirmationTokenAsync(user);
             // Create verification link
             var encodedToken = WebUtility.UrlEncode(emailConfirmationToken);
-            var verificationLink = $"{_configuration["AppSettings:BaseUrl"]}/auth/verify-email?userId={user.Id}&token={encodedToken}";
+           // var verificationLink = $"{_configuration["AppSettings:BaseUrl"]}/auth/verify-email?userId={user.Id}&token={encodedToken}";
+            var verificationLink = $"{_configuration["AppSettings:FrontendUrl"]}/verify-email?userId={user.Id}&token={encodedToken}";
 
             // Send verification email
             try
@@ -436,7 +437,7 @@ namespace Reconciliation.Infrastructure.Services
 
             var emailConfirmationToken = await _userManager.GenerateEmailConfirmationTokenAsync(user);
             var encodedToken = WebUtility.UrlEncode(emailConfirmationToken);
-            var verificationLink = $"{_configuration["AppSettings:BaseUrl"]}/auth/verify-email?userId={user.Id}&token={encodedToken}";
+            var verificationLink = $"{_configuration["AppSettings:FrontendUrl"]}/verify-email?userId={user.Id}&token={encodedToken}";
 
             try
             {
